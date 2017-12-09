@@ -1,7 +1,7 @@
 const path = require('Path');
 
 module.exports = {
-    "build": {
+    /* "build": {
         "env": require("./env_prod"),
         "index": path.join(__dirname, "..", "dist", "index.html"),
         "assetsRoot": path.join(__dirname, "..", "dist"),
@@ -9,7 +9,7 @@ module.exports = {
         "assetsPublicPath": "/",
         "productionSourceMap": true,
         "productionGzipExtensions": ["js", "css"],
-    },
+    }, */
     "dev": {
         "env": require("./env_dev"),
         "port": 3000,
