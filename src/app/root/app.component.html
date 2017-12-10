@@ -1,3 +1,27 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<router-outlet></router-outlet>
+<div class="page-container">
+    <header>
+        <nav>
+            <ul>
+                <li>
+                    <a routerLink='/home'>Home</a>
+                </li>
+                <li>
+                    <a routerLink='/login'>login</a>
+                </li>
+                <li>
+                    <a routerLink='/chart/linechart'>line chart</a>
+                </li>
+                <li>
+                    <a routerLink='/chart/piechart'>pie chart</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <router-outlet></router-outlet>
+    <footer>
+        <div>Dashboard footer</div>
+    </footer>
+</div>
+
 
