@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { HomePageComponent } from './components/homepage/homePage.component';
 import { routing } from './global.routes';
 
+
 @NgModule({
   declarations: [
     AppComponent,

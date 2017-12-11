@@ -4,11 +4,14 @@ import { LineChart } from './components/lineChart/lineChart.component';
 import { PieChart } from './components/pieChart/pieChart.component';
 import { BarChart } from './components/barchart/barchart.component';
 import { ChartsRouting } from './charts.routes';
+import { ChartService } from './services/charts.service';
+import { HttpModule } from '@angular/http';
 
 @NgModule({
     imports: [
         CommonModule,
-        ChartsRouting
+        ChartsRouting,
+        HttpModule
     ],
     declarations: [
         LineChart,
@@ -19,7 +22,8 @@ import { ChartsRouting } from './charts.routes';
         LineChart,
         PieChart,
         BarChart
-    ]
+    ],
+    providers: [ChartService]
 })
 
 export class ChartModule {};

@@ -14,7 +14,8 @@ export class BarChart implements AfterViewInit {
     @ViewChild("barChart") private chartContainer: ElementRef;
     message: string = 'bar chart for expenses';
 
-    private data: Array<any>;
+    private data: Array<IChart>;
+    private tempData;
     private margin: any = { top: 20, bottom: 20, left: 20, right: 20};
     private chart: any;
     private width: number;
@@ -24,19 +25,30 @@ export class BarChart implements AfterViewInit {
     private colors: any;
     private xAxis: any;
     private yAxis: any;
+
   
-    constructor() { }
+    constructor(private chartService: ChartService) {
+        this.chartService.getBarChartData()
+        .subscribe(res => {
+            this.data = <IChart[]>res;
+            this.createChart();
+            if (this.data) {
+                this.updateChart();
+            }
+        });
+    }
+
     ngAfterViewInit() {
-        this.data = [];
+        /* this.data = [];
         setTimeout(() => {
             this.generateData();
             setTimeout(() => this.generateData(), 3000);
         }, 1000);
-        this.createChart();
+        this.createChart(); */
         
     }
 
-    generateData() {
+    /* generateData() {
         for (let i = 0; i < (8 + Math.floor(Math.random() * 10)); i++) {
           this.data.push([
             `Index ${i}`,
@@ -46,7 +58,7 @@ export class BarChart implements AfterViewInit {
         if (this.data) {
             this.updateChart();
         }
-    }
+    } */
     
     
     ngOnChanges() {
@@ -69,8 +81,8 @@ export class BarChart implements AfterViewInit {
           .attr('transform', `translate(${this.margin.left}, ${this.margin.top})`);
     
         // define X & Y domains
-        let xDomain = this.data.map(d => d[0]);
-        let yDomain = [0, d3.max(this.data, d => d[1])];
+        let xDomain = this.data.map((d: IChart) => d.label);
+        let yDomain = [0, d3.max(this.data, (d: IChart) => d.value)];
     
         // create scales
         this.xScale = d3.scaleBand().padding(0.1).domain(xDomain).rangeRound([0, this.width]);
@@ -92,8 +104,8 @@ export class BarChart implements AfterViewInit {
 
     updateChart() {
         // update scales & axis
-        this.xScale.domain(this.data.map(d => d[0]));
-        this.yScale.domain([0, d3.max(this.data, d => d[1])]);
+        this.xScale.domain(this.data.map((d: IChart) => d.label));
+        this.yScale.domain([0, d3.max(this.data, (d: IChart) => d.value)]);
         this.colors.domain([0, this.data.length]);
         this.xAxis.transition().call(d3.axisBottom(this.xScale));
         this.yAxis.transition().call(d3.axisLeft(this.yScale));
@@ -106,25 +118,25 @@ export class BarChart implements AfterViewInit {
     
         // update existing bars
         this.chart.selectAll('.bar').transition()
-          .attr('x', d => this.xScale(d[0]))
-          .attr('y', d => this.yScale(d[1]))
-          .attr('width', d => this.xScale.bandwidth())
-          .attr('height', d => this.height - this.yScale(d[1]))
-          .style('fill', (d, i) => this.colors(i));
+          .attr('x', (d: IChart) => this.xScale(d.label))
+          .attr('y', (d: IChart) => this.yScale(d.value))
+          .attr('width', (d: IChart) => this.xScale.bandwidth())
+          .attr('height', (d: IChart) => this.height - this.yScale(d.value))
+          .style('fill', (d: IChart, i) => this.colors(i));
     
         // add new bars
         update
           .enter()
           .append('rect')
           .attr('class', 'bar')
-          .attr('x', d => this.xScale(d[0]))
-          .attr('y', d => this.yScale(0))
+          .attr('x', (d: IChart) => this.xScale(d.label))
+          .attr('y', (d: IChart) => this.yScale(0))
           .attr('width', this.xScale.bandwidth())
           .attr('height', 0)
-          .style('fill', (d, i) => this.colors(i))
+          .style('fill', (d: IChart, i) => this.colors(i))
           .transition()
-          .delay((d, i) => i * 10)
-          .attr('y', d => this.yScale(d[1]))
-          .attr('height', d => this.height - this.yScale(d[1]));
+          .delay((d: IChart, i) => i * 10)
+          .attr('y', (d: IChart) => this.yScale(d.value))
+          .attr('height', (d: IChart) => this.height - this.yScale(d.value));
     }
 }
