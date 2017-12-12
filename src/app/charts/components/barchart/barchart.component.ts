@@ -48,25 +48,6 @@ export class BarChart implements AfterViewInit {
         
     }
 
-    /* generateData() {
-        for (let i = 0; i < (8 + Math.floor(Math.random() * 10)); i++) {
-          this.data.push([
-            `Index ${i}`,
-            Math.floor(Math.random() * 100)
-          ]);
-        }
-        if (this.data) {
-            this.updateChart();
-        }
-    } */
-    
-    
-    ngOnChanges() {
-        if (this.chart) {
-            this.updateChart();
-        }
-    }
-
     createChart() {
         let element = this.chartContainer.nativeElement;
         this.width = element.offsetWidth - this.margin.left - this.margin.right;

@@ -5,6 +5,7 @@ import { ChartModule } from '../charts/charts.module';
 import { AppComponent } from './app.component';
 import { HomePageComponent } from './components/homepage/homePage.component';
 import { routing } from './global.routes';
+import { ZoomService } from './components/homepage/homepage.service';
 
 
 @NgModule({
@@ -18,7 +19,7 @@ import { routing } from './global.routes';
     ChartModule,
     routing
   ],
-  providers: [],
+  providers: [ZoomService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

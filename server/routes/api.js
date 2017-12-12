@@ -26,4 +26,11 @@ router.get('/gdp', (req, res) => {
       });
 });
 
+router.get('/zoom', (req, res) => {
+    fs.readFile(path.join(__dirname, '../', 'data/zoom.json'), 'utf8', function (err, data) {
+        if (err) throw err;
+        return res.json(JSON.parse(data));
+      });
+});
+
 module.exports = router;

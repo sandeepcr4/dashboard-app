@@ -1,0 +1,13 @@
+{
+    "glassSettings": {
+       "glassWidth": "225px",
+       "glassHeight": "225px",
+       "glassImage": "/assets/example.jpg"
+    },
+    "images": {
+       "imageUrlMobile": "/assets/example.jpg",
+       "imageUrlTablet": "/assets/example.jpg",
+       "imageUrlDesktop": "/assets/example.jpg",
+       "altText":"The 2018 Kia Stinger GT interior cabin and technology"
+    }
+}
