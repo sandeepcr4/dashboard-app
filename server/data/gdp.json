@@ -19,7 +19,27 @@
     "value": 8
 },
 {
-    "label": "INDIA",
-    "value": 5
+    "label": "India",
+    "value": 7
+},
+{
+    "label": "Poland",
+    "value": 3
+},
+{
+    "label": "Russia",
+    "value": 2
+},
+{
+    "label": "Brazil",
+    "value": 2
+},
+{
+    "label": "Sri Lanka",
+    "value": 1
+},
+{
+    "label": "Mexico",
+    "value": 1
 }
 ]

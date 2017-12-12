@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 import { ZoomService } from './homepage.service';
 
 @Component({
@@ -8,12 +8,31 @@ import { ZoomService } from './homepage.service';
     encapsulation: ViewEncapsulation.None
 })
 
-export class HomePageComponent {
+export class HomePageComponent implements AfterViewInit{
+    @ViewChild("imageZoom") private zoomContainer: ElementRef;
     welcomeMessage: string = 'Welcome to Dashboard applications';
+    private settings: any;
+    private nWidth: number;
+    private nHeight: number;
+    private position: any;
+    private magnifyCSS: any;
+    private imageSrc: string;
+
     constructor (private zoomService: ZoomService) {
         this.zoomService.getZoomData()
         .subscribe(res => {
-            console.log(res);
+            this.settings = res;
+            this.imageSrc = res.images.imageUrlDesktop;
+            console.log(this.zoomContainer);
         });
     }
+
+    ngAfterViewInit() {
+
+    }
+
+    mouseMove(evt: MouseEvent) {
+        
+    }
+
 }

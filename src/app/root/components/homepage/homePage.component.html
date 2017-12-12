@@ -1,3 +1,6 @@
-<div class="image-container">
-    <img src="/assets/example.jpg">
+<div class="image-container" #imageZoom>
+    <div *ngIf="settings" class="magnifying-glass"
+    [ngStyle]="{'width': settings.glassSettings.glassWidth, 'height': settings.glassSettings.glassHeight}">
+    </div>
+    <img [src]="imageSrc" (mousemove)="mouseMove($event)">
 </div>
