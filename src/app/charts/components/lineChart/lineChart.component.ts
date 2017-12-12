@@ -10,7 +10,8 @@ import { ILineChart } from '../../services/charts.interface';
 @Component({
     selector: 'line-chart',
     templateUrl: './lineChart.component.html',
-    styleUrls: ['linechart.css']
+    styleUrls: ['linechart.css'],
+    encapsulation: ViewEncapsulation.None,
 })
 
 export class LineChart implements AfterViewInit{
